@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1519417238 source:c:\dev\cpp\aqua_battle\main.cpp
+	<iostream>
+	<string>
+	<time.h>
+	<stdlib.h>
+
+1519337847 c:\dev\cpp\aqua_battle\table.h
+
+1519339003 c:\dev\cpp\aqua_battle\table.hpp
+
