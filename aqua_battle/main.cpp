@@ -4,14 +4,14 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define COLUMNS 11
-#define ROWS 11
+#define COLUMNS 12
+#define ROWS 12
 
 using namespace std;
 
 
 //Las coordenadas del tablero, meramente visual
-char index [10] = {'A','B','C','D','E','F','G','H','I','J'};
+char index [11] = {' ','A','B','C','D','E','F','G','H','I','J'};
 
 class Table
 {
@@ -23,9 +23,9 @@ public:
         for(int i = 0; i < ROWS; i++)
             for (int k = 0; k < COLUMNS; k++)
             {
-                if(i == 0 || i == 10){_arr[i][k] = '#';}
-                else if(k==0 || k == 10){_arr[i][k] == '#';}
-                _arr[i][k] = 'O';
+                if(i == 0 || i == 11 || k==0 || k == 11){_arr[i][k] = '#'; _arr[i][k] == '#';}
+                else
+                    _arr[i][k] = 'O';
             }
 
     }
@@ -65,9 +65,9 @@ public:
     //Función que imprime el tablero con sus coordenadas
     void PrintTable()
     {
-        cout << "\t  ";
-        for(int i = 0; i < ROWS; i++)
-            cout <<  i+1 << " ";
+        cout << "\t    ";
+        for(int i = 1; i < ROWS-1; i++)
+            cout << i << " ";
         for(int i = 0; i < ROWS; i++)
         {
             cout << endl;
@@ -89,7 +89,7 @@ public:
             {
                     //Comprobar si se superponen- Comprueba si hay barco contiguo
                 if ( table._arr[x][i] == 'X' || table._arr[x-1][i] == 'X'|| table._arr[x+1][i] == 'X'|| table._arr[x][y-1] == 'X'|| table._arr[x][y+ship.size()] == 'X'
-                    || (ship.size()+y) > COLUMNS || (ship.size() - y) < 0)//->comprueba si se sale del tablero
+                    || table._arr[x][y] == '#' || table._arr[x][i] == '#')//->comprueba si se sale del tablero
                 {cout << "Posicion erronea, ya hay un barco" << endl; return false;}
             }
             cout << "Posicion correcta" << endl;
@@ -102,13 +102,16 @@ public:
             for ( int i = x; i < ship.size()+ x; i++)
             {
                 if ( table._arr[i][y] == 'X' || table._arr[i+1][y+1] == 'X'|| table._arr[i+1][y-1] == 'X'|| table._arr[i-1][y] == 'X'|| table._arr[i+ship.size()][y] == 'X'
-                    || table._arr[x+ship.size()][y] != 'X' && table._arr[x+ship.size()][y] != 'O' )
+                    || table._arr[x][y] == '#' || table._arr[i][y] == '#')
                 {cout << "Posicion erronea, ya hay un barco" << endl; return false;}
             }
             cout << "Posicion correcta" << endl;
             return true;
         }
-    }
+        /*
+        Cambiados el número de filas y columnas del tablero para que sea más sencillo manejar las colisiones.  Modificaciones en las colisiones, aún por implementar.
+
+        */
 };
 
 int main()
@@ -150,13 +153,13 @@ int main()
         Table a;
         char rot = 'H';
         char rot2 = 'V';
-        int x = rand() % 10;
-        int y = rand() % 10;
-        int x2 = rand() % 10;
-        int y2 = rand() % 10;
+        int x = rand()  % 10 + 1;
+        int y = rand()  % 10 + 1;
+        int x2 = rand() % 10 + 1;
+        int y2 = rand() % 10 + 1;
         //se le pasa la instancia del tablero, las coordenadas donde quiere situarse el barco, el tipo de barco y la posición de este
-  //      a.SetTable(a, 6, 7, fragata, rot);
-  //      a.SetTable(a, 7, 0, fragata, rot2);
+        a.SetTable(a, x, y, fragata, rot);
+        a.SetTable(a, x2, y2, fragata, rot2);
         a.PrintTable();
         a.ResetTable();
         cin.get();

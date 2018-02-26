@@ -9,3 +9,9 @@
 
 1519339003 c:\dev\cpp\aqua_battle\table.hpp
 
+1519495394 source:c:\dev\cpp\hello_world\shitty-console-games\aqua_battle\main.cpp
+	<iostream>
+	<string>
+	<time.h>
+	<stdlib.h>
+
