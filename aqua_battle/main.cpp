@@ -35,10 +35,10 @@ public:
         Table();
     }
 
-    //Función que actualiza el tablero con las tiradas de cada turno
+    //FunciÃ³n que actualiza el tablero con las tiradas de cada turno
     void SetTable(Table& table, int x, int y, const string& ship, char rotation)
     {
-        //Rotación horizontal
+        //RotaciÃ³n horizontal
         if (rotation == 'H')
         {
             CheckPos(table, x, y, ship, rotation);
@@ -51,7 +51,7 @@ public:
                 }
             }
 
-        }//Rotación vertical
+        }//RotaciÃ³n vertical
         else if(rotation == 'V')
         {
             CheckPos(table, x, y, ship, rotation);
@@ -60,9 +60,9 @@ public:
                 table._arr[x+i][y] = ship[i];
         }
         else
-            cout << "Error, formato de rotación no válido" << endl;
+            cout << "Error, formato de rotaciÃ³n no vÃ¡lido" << endl;
     }
-    //Función que imprime el tablero con sus coordenadas
+    //FunciÃ³n que imprime el tablero con sus coordenadas
     void PrintTable()
     {
         cout << "\t    ";
@@ -87,6 +87,7 @@ public:
             cout << "h" << endl;
             for ( int i = y; i < ship.size()+y; i++ )
             {
+                //WARNING HORRIBLE CODE//
                     //Comprobar si se superponen- Comprueba si hay barco contiguo
                 if ( table._arr[x][i] == 'X' || table._arr[x-1][i] == 'X'|| table._arr[x+1][i] == 'X'|| table._arr[x][y-1] == 'X'|| table._arr[x][y+ship.size()] == 'X'
                     || table._arr[x][y] == '#' || table._arr[x][i] == '#')//->comprueba si se sale del tablero
@@ -109,7 +110,7 @@ public:
             return true;
         }
         /*
-        Cambiados el número de filas y columnas del tablero para que sea más sencillo manejar las colisiones.  Modificaciones en las colisiones, aún por implementar.
+        Cambiados el nÃºmero de filas y columnas del tablero para que sea mÃ¡s sencillo manejar las colisiones.  Modificaciones en las colisiones, aÃºn por implementar.
 
         */
 };
@@ -139,7 +140,7 @@ int main()
     }
     cout << endl;
 
-    ////////////////////// MENÚ ///////////////////////////////////
+    ////////////////////// MENÃš ///////////////////////////////////
 
     cout << "Bienvenido a Aqua_Battles" << endl;
     cout << "Pon los barcos en el tablero" << endl;
@@ -157,7 +158,7 @@ int main()
         int y = rand()  % 10 + 1;
         int x2 = rand() % 10 + 1;
         int y2 = rand() % 10 + 1;
-        //se le pasa la instancia del tablero, las coordenadas donde quiere situarse el barco, el tipo de barco y la posición de este
+        //se le pasa la instancia del tablero, las coordenadas donde quiere situarse el barco, el tipo de barco y la posiciÃ³n de este
         a.SetTable(a, x, y, fragata, rot);
         a.SetTable(a, x2, y2, fragata, rot2);
         a.PrintTable();
